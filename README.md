@@ -51,3 +51,26 @@ Fill in the code in the view `predict_wine_quality` of app.py so that it:
 1. Loads the model using [joblib](https://pypi.org/project/joblib/)
 2. Predicts the quality of wine described by the variable `wine_features`
 3. And returns the quality as described by the example
+
+## Iteration 2
+
+We want to make sure the data provided by the user as input is really about wine before performing a prediction. Our rule of thumb is that a wine has a pH comprised between 2.5 and 4.5. If the input pH does not fall into that umbrella, we want to return an error message "Error: A wine should normally have a pH comprised between 2.5 and 3.5" and HTTP error code 400 (Bad Request)
+
+Add that verification to the endpoint you just implemented.
+
+## Iteration 3
+
+The company decided to focus only on red wines and therefore with 3.5 \< pH \< 4.5. A wine whose pH does not fall into that umbrella is most likely a white wine. Therefore, if the input corresponds to a white wine, we want to return the error message "Error: As of now, we only deal with red wine. Your input is most likely a white wine" and HTTP error code 400
+
+Add this verification as well
+
+## Iteration 4
+
+Now, the company wants to present the quality of wine in a more concise manner, using words in another endpoint. Essentially, the expected output is:
+
+- BAD (for wine quality between 0 and 3)
+- AVERAGE (4 \<= quality \<= 6>)
+- NOT BAD (from 7 to 9)
+- PERFECTION (10)
+
+Implement a second endpoint, with path `/wine_quality/estimate/summary` that outputs wine quality in that fashion.
